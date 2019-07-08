@@ -1,25 +1,33 @@
 import React, {Component} from "react"
+import {Redirect} from 'react-router-dom'
 
 class Signin extends Component{
    constructor(){
        super();
        this.state = {
-           userName: "",
+           email: "",
            password: "",
            error: "",
            redirectToRefer: false
        };
    }
-   handleChanege = userName => event => {
+   handleChanege = email => event => {
        this.setState({error: ""});
-       this.setState({[userName]: event.target.value});
+       this.setState({[email]: event.target.value});
    };
+
+   authenticate (jwt, next){
+       if(typeof window !== "undefined"){
+           localStorage.setItem("jwt", JSON.stringify(jwt))
+           next();
+       }
+   }
 
    clickSubmit = event => {
        event.preventDefault();
-       const {userName , password} = this.state;
+       const {email, password} = this.state;
        const user = {
-           userName,
+           email,
            password
        };
        this.signin(user)
@@ -29,10 +37,14 @@ class Signin extends Component{
            }
            else
                {
+                   //authenticate
+                   this.authenticate(data, () =>{
+                    this.setState({redirectToRefer: true})
+                   })
                }
                });
        }
-   }
+
 
    signin = user => {
        return fetch("url/signin", {
@@ -49,16 +61,16 @@ class Signin extends Component{
            .catch(err => console.log(err));
    }
 
-   signinForm = (userName, password) => (
+   signinForm = (email, password) => (
 
        <form>
            <div className="form-group">
-               <label className="text-muted">نام کاربری</label>
+               <label className="text-muted">ایمیل خود را وارد کنید</label>
                <input
-               onChange={this.handleChanege("username")}
+               onChange={this.handleChanege("email")}
                type="email"
                className="form-control"
-               value={username}
+               value={email}
                placeholder="@gmail.com"
                />
            </div>
@@ -77,15 +89,15 @@ class Signin extends Component{
 
    render()
 {
-    const {userName, password, error} = this.state;
+    const {email, password, error} = this.state;
     return (
         <div className="container">
-            <h2 className="mt-5 mb-5">SignIn</h2>
+            <h2 className="mt-5 mb-5">وارد شوید</h2>
 
             <div className="alert alert-danger" style={{display: error ? "" : "none"}}>
                 {error}
             </div>
-            {this.signinForm(userName, password)}
+            {this.signinForm(email, password)}
         </div>
     )}
 }
