@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import 'bootstrap-material-design/dist/css/bootstrap-material-design.min.css'
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

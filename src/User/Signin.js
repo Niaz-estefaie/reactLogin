@@ -13,7 +13,7 @@ class Signin extends Component {
         };
     }
 
-    handleChanege = email => event => {
+    handleChange = email => event => {
         this.setState({error: ""});
         this.setState({[email]: event.target.value});
     };
@@ -59,7 +59,7 @@ class Signin extends Component {
                         <div className="form-group user">
                             <label className="text-muted">شماره موبایل</label>
                             <input
-                                onChange={this.handleChanege("tel")}
+                                onChange={this.handleChange("tel")}
                                 type="tel"
                                 className="form-control"
                                 placeholder="09*********"
@@ -69,7 +69,7 @@ class Signin extends Component {
                         <div className="form-group">
                             <label className="text-muted">کلمه عبور</label>
                             <input
-                                onChange={this.handleChanege("password")}
+                                onChange={this.handleChange("password")}
                                 type="password"
                                 className="form-control"
                                 placeholder="********"
@@ -102,7 +102,7 @@ class Signin extends Component {
             <div className="form-group">
                 <label className="text-muted">ایمیل خود را وارد کنید</label>
                 <input
-                    onChange={this.handleChanege("email")}
+                    onChange={this.handleChange("email")}
                     type="email"
                     className="form-control"
                     value={email}
@@ -112,7 +112,7 @@ class Signin extends Component {
             <div className="form-group">
                 <label className="text-muted">کلمه عبور</label>
                 <input
-                    onChange={this.handleChanege("password")}
+                    onChange={this.handleChange("password")}
                     type="password"
                     className="form-control"
                     value={password}

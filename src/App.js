@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 
 import './App.css';
-import StatusAll from './components/StatusAll';
-
+import Signin from "./User/Signin";
 
 class App extends Component{
   render() {
     return (
-        <div className="App">
+        /*<div className="App">
           <header className="App-header">
-              <StatusAll />
+              <Signin/>
           </header>
-        </div>
+        </div>*/
+        <Signin/>
     );
   }
 }
